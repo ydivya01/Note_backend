@@ -109,46 +109,48 @@ app.delete("/api/notes/:id", async (req, res) => {
 });
 
 //Login
-// app.post("/login",(req, res) => {
-//   const { email, password } = req.body;
-//   UserModel.findOne({email:email})
-//   .then(us =>{
-//     if(us){
-//         if(us.password=== password){
-//             res.json('Success')
-//         }else{
-//             res.json('The password is incorrect')
-//         }
-//     }else{
-//         res.json('No record existed')
-//     }
-//   })
+app.post("/login",(req, res) => {
+  const { email, password } = req.body;
+  UserModel.findOne({email:email})
+  .then(us =>{
+    if(us){
+        if(us.password=== password){
+            res.json('Success')
+        }else{
+            res.json('The password is incorrect')
+        }
+    }else{
+        res.json('No record existed')
+    }
+  })
     
-// });
+});
 
-app.post('/login', (req, res) => {
-    const { email, password } = req.body;
-    UserModel.findOne({ email: email })
-        .then(user => {
-            if (user) {
-                bcrypt.compare(password, user.password, (err, response) => {
-                    if (response) {
-                        const token = jwt.sign({ email:user.email, name:user.name },
-                            "jwt-secret-key", { expiresIn: '1d' })
-                            res.cookie('token', token)
+// app.post('/login', (req, res) => {
+//     const { email, password } = req.body;
+//     UserModel.findOne({ email: email })
+//         .then(user => {
+//             if (user) {
+//               console.log(user)
+//                 bcrypt.compare(password, user.password, (err, response) => {
+//                     if (response) {
+                    
+//                         const token = jwt.sign({ email:user.email, name:user.name },
+//                             "jwt-secret-key", { expiresIn: '1d' })
+//                             res.cookie('token', token)
                            
-                            return res.json('Success')                                                                                                              
-                    } else {
+//                             return res.json('Success')                                                                                                              
+//                     } else {
 
-                        return res.json('The passowrd is incorrect')
-                    }
-                })
+//                         return res.json('The passowrd is incorrect')
+//                     }
+//                 })
 
-            } else {
-                res.json("No record existed")
-            }
-        })
-})
+//             } else {
+//                 res.json("No record existed")
+//             }
+//         })
+// })
 
 //Register
 // app.post("/register",  (req, res) => {
