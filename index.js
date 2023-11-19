@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     // origin:"http://localhost:3000",
     //origin:["https://shimmering-kheer-34c615.netlify.app"],
-    origin:"https://keen-horse-3ef527.netlify.app/",
+    origin:["https://keen-horse-3ef527.netlify.app/"],
     methods:["GET", "POST", "PUT", "DELETE"],
     credentials:true,
     optionSuccessStatus:200
