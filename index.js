@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: 'MONGODB_URI' });
 
 const express = require("express");
 const cors = require("cors");
@@ -15,7 +15,7 @@ const app = express();
 // app.use(cookieParser())
 // app.use(express.static('public'))
 
-
+const PORT = 8000;
 
 
 
