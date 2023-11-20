@@ -26,7 +26,10 @@ app.use(cors());
 
 app.use(cors({
     // origin:"http://localhost:3000",
-    origin:"https://keen-horse-3ef527.netlify.app"
+    origin:"https://keen-horse-3ef527.netlify.app",
+    methods:["GET", "POST", "PUT", "DELETE"],
+    credentials:true,
+    optionSuccessStatus:200
  
 }))
 
