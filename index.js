@@ -112,6 +112,23 @@ app.delete("/api/notes/:id", async (req, res) => {
   }
 });
 
+//Search
+app.get('/api/search-notes', async (req,res)=>{
+  try {
+    const search = req.body.search
+    const searchResult = await Notes.find({"description": {$regex:".*"+search+".*"}})
+    if(searchResult.length > 0){
+      res.status(200).send({success:true,msg:"Notes Details", data:searchResult})
+    }else{
+      res.status(200).send({success:true, msg:"Notes not found"})
+    }
+
+  } catch (error) {
+    console.log(error)
+    
+  }
+})
+
 //Login
 app.post("/login",(req, res) => {
   const { email, password } = req.body;
@@ -181,6 +198,8 @@ app.get('/logout',(req, res)=>{
     
     return res.json("Success")
 })
+
+
 
 //Routess
 app.get("/", cors(), (req, res) => {
